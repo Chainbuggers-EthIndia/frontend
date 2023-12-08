@@ -13,7 +13,7 @@ export default function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/adash" element={<AuditorPage />} />
         <Route exact path="/edash" element={<EstimatorPage />} />
-        <Route exact path="/udash" element={<UserPage/>} />
+        <Route exact path="/udash" element={<UserPage />} />
       </Routes>
     </BrowserRouter>
 
