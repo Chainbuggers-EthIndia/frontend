@@ -14,7 +14,7 @@ export default function AuditorPage() {
                 <SidePanel />
                 <div className='flex flex-col mx-6 items-center, justify-around'>
                     <div>Current</div>
-                    <div className='flex'>
+                    <div className='flex m-4'>
                         <CompanyCard /> <CompanyCard /> <CompanyCard />
                     </div>
                     <div>History</div>
