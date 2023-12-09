@@ -15,7 +15,7 @@ const AcceptCard = () => {
             <div className="text-helvetica font-semibold text-sm px-2 text-white">Sector</div>
             <button
                 onClick={handleClick}
-                className="w-full mt-2 bg-blue-500 text-base font-bold text-white p-1 rounded-b-lg"
+                className="w-full mt-2 bg-green-500 text-base font-bold text-white p-1 rounded-b-lg"
             >
                 Accepted
             </button>
