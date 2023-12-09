@@ -1,14 +1,15 @@
 import React from 'react';
-import backgroundImage from '../assets/img/landing-bg.svg';
+import title from '../assets/img/title.svg';
 import NavigationBar from '../components/NavigationBar';
 import decarbon from '../assets/img/decarbon.png'
 import logo from '../assets/img/favicon-logo.svg'
 import findmore from '../assets/img/findmore.svg'
+import Footer from '../components/Footer';
 export default function LandingPage() {
     return (
-        <div className="h-screen relative overflow-hidden">
+        <div className="h-screen w-full relative overflow-hidden">
             <img
-                src={backgroundImage}
+                src={title}
                 alt="Background"
                 className="h-full w-full object-cover absolute inset-0 z-0"
             />
@@ -66,6 +67,9 @@ export default function LandingPage() {
                     <h1 className="text-3xl font-bold text-center pt-8">Section 4</h1>
                     {/* Add your content for Section 4 here */}
                 </section>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 z-10">
+                <Footer />
             </div>
         </div>
     );
