@@ -1,3 +1,7 @@
+import UserSignup from "../components/UserSignup";
+
 export default function UserPage() {
-    return (<div></div>);
+    return (<div>
+        <UserSignup/>
+    </div>);
 }
