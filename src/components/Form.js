@@ -42,10 +42,13 @@ const UploadedFile = ({ fileName, onDelete }) => (
   </div>
 );
 
-export default function Form() {
+export default function Form(props) {
     const closeButtonStyle = {
         backgroundColor: "#E5E5E5",
     };
+    const handleCloseForm =()=>{
+        props.setUplaodForm(false)
+    }
     const [uploadedFileName, setUploadedFileName] = useState(null);
     const [uploadedFilePath, setUploadedFilePath] = useState(null);
     const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -130,7 +133,7 @@ export default function Form() {
         <button
           style={closeButtonStyle}
           className="relative top-[-1rem] left-[19rem]  w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-400"
-          onClick={() => console.log("Close button clicked")}
+          onClick={handleCloseForm}
         >
           <span className="text-xs font-bold">X</span>
         </button>
