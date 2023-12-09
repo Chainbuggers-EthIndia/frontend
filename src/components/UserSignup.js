@@ -63,7 +63,7 @@ function UserSignup() {
         <img src={logo} className="w-[10vw]" />
         <div className="flex gap-8 items-center justify-between bg-offwhite1 p-4 rounded-lg w-[100%] ml-[10vw]">
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F]" : null
+            className={`text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F] text-white" : "text-[#333333]"
               } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
@@ -74,7 +74,7 @@ function UserSignup() {
             Log in
           </div>
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? null : "bg-[#622A0F]"
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "text-[#333333]" : "bg-[#622A0F] text-white"
               } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
@@ -119,16 +119,16 @@ function UserSignup() {
             {!login && (
               <div className="flex flex-col gap-1">
                 <label className="text-[#ffffff] text-[1vw] font-bold ">
-                  Company Id
+                  Company Sector
                 </label>
                 <select
-                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  className="text-[#000000] text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                   onChange={(e) => setSector(e.target.value)}
                 >
                   <option>Select</option>
                   <option>Chemical</option>
                   <option>Software</option>
-                  <option> Manufacturing</option>
+                  <option>Manufacturing</option>
                   <option>Transport</option>
                 </select>
               </div>
