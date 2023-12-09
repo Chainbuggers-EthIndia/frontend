@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import signupImg from "../assets/img/signup-img.png";
 import logo from "../assets/img/main-logo.svg";
+import Web3 from "web3";
 
 function UserSignup() {
   const navigate = useNavigate();
@@ -11,6 +12,24 @@ function UserSignup() {
   const [companyName, setCompanyName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+  // const [walletAddress, setWalletAddress] = React.useState("");
+
+
+  const connectMetamask = async () => {
+    if (window.ethereum) {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        // const web3 = new Web3(window.ethereum);
+        // const accounts = await web3.eth.getAccounts();
+        // setWalletAddress(accounts[0]);
+        console.log("Connected to Metamask");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Please install Metamask");
+    }
+  };
 
   const [id, setId] = React.useState("");
   const [role, setRole] = React.useState("Company");
@@ -28,6 +47,7 @@ function UserSignup() {
         // if (res) {
         //   navigate("/adash");
         // }
+        await connectMetamask();
       } catch (error) {
         console.log(error);
       }
@@ -42,6 +62,7 @@ function UserSignup() {
         if (res ) {
           navigate("/adash");
         }
+        await connectMetamask();
       } catch (error) {
         console.log(error);
       }
@@ -67,6 +88,7 @@ function UserSignup() {
             // Convert the entire response data object to a string for debugging
             alert("Response data: " + JSON.stringify(res.data));
           }
+        await connectMetamask();
         } catch (error) {
           console.log(error);
         }

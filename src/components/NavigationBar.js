@@ -6,7 +6,7 @@ const NavigationBar = () => {
     const navigate = useNavigate();
 
     const handleDivClick = () => {
-        navigate('/udash');
+        navigate('/register');
     };
     return (
         <div className="flex justify-between items-center p-2 mb-3 relative">

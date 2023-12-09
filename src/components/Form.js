@@ -62,7 +62,7 @@ export default function Form(props) {
 
     try {
       const response = await axios.post(
-        "http://192.168.148.85:8000/audit/upload",
+        "https://lexeco.onrender.com/audit/upload",
         formData
       );
 
@@ -107,7 +107,7 @@ export default function Form(props) {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://192.168.148.85:8000/audit/upload",
+        "https://lexeco.onrender.com/audit/upload",
         formData
       );
 
@@ -198,7 +198,8 @@ export default function Form(props) {
           />
         </div>
 
-        {/* Submit Button */}
+
+        {/* Submit Button */}  {/* //TRIGGER Lexeco1 Carbon Credit */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 cursor-pointer"
