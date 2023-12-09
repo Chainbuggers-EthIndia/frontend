@@ -1,7 +1,9 @@
 import React from 'react';
 import backgroundImage from '../assets/img/landing-bg.svg';
 import NavigationBar from '../components/NavigationBar';
-
+import decarbon from '../assets/img/decarbon.png'
+import logo from '../assets/img/favicon-logo.svg'
+import findmore from '../assets/img/findmore.svg'
 export default function LandingPage() {
     return (
         <div className="h-screen relative overflow-hidden">
@@ -13,26 +15,39 @@ export default function LandingPage() {
             <div className="absolute top-0 left-0 right-0 z-10">
                 <NavigationBar />
             </div>
-            <div className="absolute top-16 left-0 right-0 bottom-0 overflow-y-auto overflow-x-hidden">
+            <div className="absolute top-12 left-0 right-0 bottom-0 overflow-y-auto overflow-x-hidden">
                 <section className='h-screen bg-gray-200'>
                     <div className='flex mt-56 ml-44'>
-                        <div className='flex flex-col items-start justify-center'>
+                        <div className='w-1/3 h-2/3 flex flex-col items-center justify-around'>
+                            <div className='w-1/4 h-1/4'>
+                                <img src={logo} />
+                            </div>
                             <div className='text-7xl text-extrabold text-white mb-2 font-helvetica underline-offset-2'>LEXECO</div>
-                            <div className='text-3xl text-semibold text-offwhite1 ml-12'>Rewarding Sustainability.</div>
+                            <div className='text-3xl text-semibold font-helvetica text-offwhite1'>Rewarding Sustainabity.</div>
+                        </div>
+                        {/* <div className="border-l-4 border-gray h-40">n</div> */}
+                        <div className='w-2/3 h-2/3 mt-8 flex flex-col items-center justify-between'>
+                            <div className='text-xl font-bold font-helvetica w-1/2 text-offwhite1'>
+                                Turn emissions into income: The carbon credit marketplace that rewards sustainability.
+                            </div>
+                            <div className='h-1/2 w-1/2 p-8'>
+                                <img src={findmore} />
+                            </div>
                         </div>
                     </div>
                 </section>
-                <section className="h-screen bg-gray-200 relative flex items-center justify-center">
+                <section className="h-screen bg-gray-200 relative flex items-center justify-between">
                     <div className="absolute top-0 left-0 w-full h-full">
                         <div className="h-full bg-gray-200 transform skew-y-6"></div>
                     </div>
-                    <div className="w-1/2 text-center p-8">
+                    <div className="w-2/5 text-center p-8 flex flex-col">
                         <h1 className="text-6xl text-start text-white font-extrabold">What is Decarbonization ?</h1>
+                        <h1 className="text-xl font-helvetica text-semibold text-offwhite1">
+                            "Decarbonisation" tends to refer to the process of reducing "carbon intensity", lowering the amount of greenhouse gas emissions produced by the burning of fossil fuels. Generally, this involves decreasing CO2 output per unit of electricity generated.
+                        </h1>
                     </div>
-                    <div className="w-1/2 text-left p-8">
-                        <p className="text-lg font-helvetica text-semibold text-offwhite1">
-                            "Decarbonisation" tends to refer to the process of reducing "carbon intensity", lowering the amount of greenhouse gas emissions produced by the burning of fossil fuels. Generally, this involves decreasing CO2 output per unit of electricity generated. Reducing the amount of carbon dioxide occurring as a result of transport and power generation is essential to meet global temperature standards set by the Paris Agreement and UK government.
-                        </p>
+                    <div className="w-2/5 p-8">
+                        <img src={decarbon} className='w-2/3 h-2/3 rounded-l-lg' />
                     </div>
                 </section>
                 {/* Section 2 */}
