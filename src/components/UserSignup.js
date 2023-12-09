@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import signupImg from "../assets/img/signup-img.png";
 import logo from "../assets/img/main-logo.svg";
 
 function UserSignup() {
-    const navigate = useNavigate();
-    const [login, setLogin] = React.useState(true);
+  const navigate = useNavigate();
+  const [login, setLogin] = React.useState(true);
   const [companyId, setCompanyId] = React.useState("");
   const [companyName, setCompanyName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -15,34 +15,50 @@ function UserSignup() {
   const [role, setRole] = React.useState("Company");
   async function handleLogin() {
     console.log(companyName, password, role);
-    const res = await axios.post("http://localhost:8000/audit/login", {
+    try {
+      const res = await axios.post("http://localhost:8000/audit/login", {
         companyId: companyId,
-          password: password,
-          role: role,
-        });
-        console.log("Response: ", res.data)
-        if(res && role === "Auditor"){navigate('/adash');}
-
+        password: password,
+        role: role,
+      });
+      console.log("Response: ", res.data);
+      if (res && role === "Auditor") {
+        navigate("/adash");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   async function handleSignup() {
     console.log(companyName, password, confirmPassword, sector);
     if (password === confirmPassword) {
       if (role === "Company") {
-        const res = await axios.post("http://localhost:8000/company/register", {
-          name: companyName,
-          password: password,
-          sector: sector,
-        });
-        console.log("Response: ", res)
+        try {
+          const res = await axios.post(
+            "http://localhost:8000/company/register",
+            {
+              name: companyName,
+              password: password,
+              sector: sector,
+            }
+          );
+          console.log("Response: ", res);
+        } catch (error) {
+          console.log(error);
+        }
       }
       if (role === "Auditor" || role === "Estimator") {
-        const res = axios.post("http://localhost:8000/audit/register", {
-          name: companyName,
-          password: password,
-          sector: sector,
-          role:role
-        });
-        console.log("Response: ", res)
+        try {
+          const res = axios.post("http://localhost:8000/audit/register", {
+            name: companyName,
+            password: password,
+            sector: sector,
+            role: role,
+          });
+          console.log("Response: ", res);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   }
@@ -82,28 +98,32 @@ function UserSignup() {
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
-            {login && <div className="flex flex-col gap-1">
-              <label className="text-[#ffffff] text-[1vw] font-bold ">
-                Company Id
-              </label>
-              <input
-                type="text"
-                placeholder="Company Id"
-                className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </div>}
-            {!login && <div className="flex flex-col gap-1">
-              <label className="text-[#ffffff] text-[1vw] font-bold ">
-                Company Name
-              </label>
-              <input
-                type="text"
-                placeholder="Company Name"
-                className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
-                onChange={(e) => setCompanyName(e.target.value)}
-              />
-            </div>}
+            {login && (
+              <div className="flex flex-col gap-1">
+                <label className="text-[#ffffff] text-[1vw] font-bold ">
+                  Company Id
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company Id"
+                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  onChange={(e) => setCompanyId(e.target.value)}
+                />
+              </div>
+            )}
+            {!login && (
+              <div className="flex flex-col gap-1">
+                <label className="text-[#ffffff] text-[1vw] font-bold ">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  onChange={(e) => setCompanyName(e.target.value)}
+                />
+              </div>
+            )}
             {!login && (
               <div className="flex flex-col gap-1">
                 <label className="text-[#ffffff] text-[1vw] font-bold ">
