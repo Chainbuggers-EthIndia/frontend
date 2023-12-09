@@ -98,20 +98,20 @@ function UserSignup() {
                 <input
                   type="text"
                   placeholder="Company Id"
-                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  className="text-black text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                   onChange={(e) => setCompanyId(e.target.value)}
                 />
               </div>
             )}
             {!login && (
               <div className="flex flex-col gap-1">
-                <label className="text-[#ffffff] text-[1vw] font-bold ">
+                <label className="text-black text-[1vw] font-bold ">
                   Company Name
                 </label>
                 <input
                   type="text"
                   placeholder="Company Name"
-                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  className="text-black text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                   onChange={(e) => setCompanyName(e.target.value)}
                 />
               </div>

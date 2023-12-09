@@ -18,7 +18,7 @@ export default function LandingPage() {
                     <div className='flex mt-56 ml-44'>
                         <div className='flex flex-col items-start justify-center'>
                             <div className='text-7xl text-extrabold text-white mb-2 font-helvetica underline-offset-2'>LEXECO</div>
-                            <div className='text-3xl text-semibold text-offwhite1 ml-12'>Rewarding Sustainabiity.</div>
+                            <div className='text-3xl text-semibold text-offwhite1 ml-12'>Rewarding Sustainability.</div>
                         </div>
                     </div>
                 </section>
@@ -36,22 +36,17 @@ export default function LandingPage() {
                     </div>
                 </section>
                 {/* Section 2 */}
-                <section className="h-screen bg-gray-300">
+                <section id="what-we-do" className="h-screen bg-gray-300">
                     <h1 className="text-3xl font-bold text-center pt-8">Section 2</h1>
                     {/* Add your content for Section 2 here */}
                 </section>
 
                 {/* Section 3 */}
-                <section className="h-screen bg-gray-400">
+                <section id="innovation" className="h-screen bg-gray-400">
                     <h1 className="text-3xl font-bold text-center pt-8">Section 3</h1>
                     {/* Add your content for Section 3 here */}
                 </section>
 
-                {/* Section 4 */}
-                <section className="h-screen bg-gray-500">
-                    <h1 className="text-3xl font-bold text-center pt-8">Section 4</h1>
-                    {/* Add your content for Section 4 here */}
-                </section>
             </div>
         </div>
     );

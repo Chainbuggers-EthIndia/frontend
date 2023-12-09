@@ -14,9 +14,9 @@ const NavigationBar = () => {
                 <img src={Logo} alt="Logo" className="h-24 w-60" />
             </div>
             <div className="flex items-end justify-end font-bold text-2xl text-white pr-5">
-                <div className="font-comic-sans mx-4 cursor-pointer">What we do</div>
-                <div className="font-comic-sans mx-4 cursor-pointer">Innovation</div>
-                <div className="font-comic-sans mx-4 cursor-pointer">About Us</div>
+                <div id="what-we-do" className="font-comic-sans mx-4 cursor-pointer">What we do</div>
+                <div id="innovation" className="font-comic-sans mx-4 cursor-pointer">Innovation</div>
+                <div id="about-us" className="font-comic-sans mx-4 cursor-pointer">About Us</div>
                 <div className="font-comic-sans mx-4 cursor-pointer" onClick={handleDivClick}>Login/Register</div>
             </div>
         </div>
