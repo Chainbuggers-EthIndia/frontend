@@ -11,36 +11,62 @@ function UserSignup() {
   const [companyName, setCompanyName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const [sector, setSector] = React.useState("");
+
+  const [id, setId] = React.useState("");
   const [role, setRole] = React.useState("Company");
 
-  
   async function handleLogin() {
     console.log(companyName, password, role);
-    const res = await axios.post("http://localhost:8000/audit/login", {
-      companyId: companyId,
-      password: password,
-      role: role,
-    });
-    console.log("Response: ", res.data)
-    if (res && role === "Auditor") { navigate('/adash'); }
-
-    
+    if (role === "Company") {
+      try {
+        const res = await axios.post("https://lexeco.onrender.com/company/login", {
+          companyId: companyId,
+          password: password,
+          role: role,
+        });
+        console.log("Response: ", res.data);
+        // if (res) {
+        //   navigate("/adash");
+        // }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const res = await axios.post("https://lexeco.onrender.com/audit/login", {
+          companyId: companyId,
+          password: password,
+          role: role,
+        });
+        console.log("Response: ", res.data);
+        if (res ) {
+          navigate("/adash");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
   async function handleSignup() {
-    console.log(companyName, password, confirmPassword, sector);
+    console.log(companyName, password, confirmPassword);
     if (password === confirmPassword) {
       if (role === "Company") {
         try {
           const res = await axios.post(
-            "http://localhost:8000/company/register",
+            "https://lexeco.onrender.com/company/register",
             {
               name: companyName,
               password: password,
-              sector: sector,
+              // sector: sector,
             }
-          );
-          console.log("Response: ", res);
+          )
+          console.log("Response: ", res.data);
+          if (res.data && res.data._id) {
+            alert("CompanyId: " + res.data._id);
+          } else {
+            // Convert the entire response data object to a string for debugging
+            alert("Response data: " + JSON.stringify(res.data));
+          }
         } catch (error) {
           console.log(error);
         }
@@ -49,10 +75,17 @@ function UserSignup() {
         const res = await axios.post("https://lexeco.onrender.com/audit/register", {
           name: companyName,
           password: password,
-          sector: sector,
-          role: role
+          // sector: sector,
+          role: role,
         });
-        console.log("Response: ", res)
+        console.log("Response: ", res.data);
+        // alert({"CompanyId":res.data._id})
+        if (res.data && res.data._id) {
+          alert("CompanyId: " + res.data._id);
+        } else {
+          // Convert the entire response data object to a string for debugging
+          alert("Response data: " + JSON.stringify(res.data));
+        }
       }
     }
   }
@@ -63,7 +96,7 @@ function UserSignup() {
         <img src={logo} className="w-[10vw]" />
         <div className="flex gap-8 items-center justify-between bg-offwhite1 p-4 rounded-lg w-[100%] ml-[10vw]">
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F]" : null
+            className={`text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F] text-white" : "text-[#333333]"
               } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
@@ -74,7 +107,7 @@ function UserSignup() {
             Log in
           </div>
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? null : "bg-[#622A0F]"
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "text-[#333333]" : "bg-[#622A0F] text-white"
               } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
@@ -116,43 +149,43 @@ function UserSignup() {
                 />
               </div>
             )}
-            {!login && (
+            {/* {!login && (
               <div className="flex flex-col gap-1">
                 <label className="text-[#ffffff] text-[1vw] font-bold ">
-                  Company Id
+                  Company Sector
                 </label>
                 <select
-                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  className="text-[#000000] text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                   onChange={(e) => setSector(e.target.value)}
                 >
                   <option>Select</option>
                   <option>Chemical</option>
                   <option>Software</option>
-                  <option> Manufacturing</option>
+                  <option>Manufacturing</option>
                   <option>Transport</option>
                 </select>
               </div>
-            )}
+            )} */}
             <div className="flex flex-col gap-1">
-              <label className="text-[#ffffff] text-[1vw] font-bold ">
+              <label className="text-black text-[1vw] font-bold ">
                 Password
               </label>
               <input
                 type="password"
                 placeholder="Password"
-                className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                className="text-black text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             {!login && (
               <div className="flex flex-col gap-1">
-                <label className="text-[#ffffff] text-[1vw] font-bold ">
-                  Conform Password
+                <label className="text-black text-[1vw] font-bold ">
+                  Confirm Password
                 </label>
                 <input
                   type="password"
-                  placeholder="Conform Password"
-                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  placeholder="Confirm Password"
+                  className="text-black text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
@@ -161,7 +194,9 @@ function UserSignup() {
           <div>
             <div className="flex gap-2 justify-between">
               <button
-                className="flex gap-8 items-center justify-center bg-offwhite1 p-2 cursor-pointer rounded-lg w-1/3"
+                className={`flex gap-8 items-center justify-center ${
+                  role === "Auditor" ? "bg-green" : "bg-offwhite1"
+                } p-2 cursor-pointer rounded-lg w-1/3`}
                 onClick={() => {
                   setRole("Auditor");
                 }}
@@ -169,7 +204,9 @@ function UserSignup() {
                 Auditor
               </button>
               <button
-                className="flex gap-8 items-center justify-center bg-offwhite1 p-2 cursor-pointer rounded-lg w-1/3"
+                className={`lex gap-8 items-center justify-center ${
+                  role === "Company" ? "bg-green" : "bg-offwhite1"
+                } p-2 cursor-pointer rounded-lg w-1/3`}
                 onClick={() => {
                   setRole("Company");
                 }}
@@ -177,7 +214,9 @@ function UserSignup() {
                 Company
               </button>
               <button
-                className="flex gap-8 items-center justify-center bg-offwhite1 p-2 cursor-pointer rounded-lg w-1/3"
+                className={`flex gap-8 items-center justify-center ${
+                  role === "Estimator" ? "bg-green" : "bg-offwhite1"
+                } p-2 cursor-pointer rounded-lg w-1/3`}
                 onClick={() => {
                   setRole("Estimator");
                 }}
