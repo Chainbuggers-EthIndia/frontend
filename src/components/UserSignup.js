@@ -13,21 +13,42 @@ function UserSignup() {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [sector, setSector] = React.useState("");
   const [role, setRole] = React.useState("Company");
+
+  
   async function handleLogin() {
     console.log(companyName, password, role);
-    try {
-      const res = await axios.post("http://localhost:8000/audit/login", {
-        companyId: companyId,
-        password: password,
-        role: role,
-      });
-      console.log("Response: ", res.data);
-      if (res && role === "Auditor") {
-        navigate("/adash");
+    if(role === "Company"){
+      try {
+        const res = await axios.post("http://localhost:8000/company/login", {
+          name: companyName,
+          password: password,
+          role: role,
+        });
+        console.log("Response: ", res.data);
+        // if (res && role === "Auditor") {
+        //   navigate("/adash");
+        // }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
+    if (role === "Auditor" || role === "Estimator") {
+      try {
+        const res = await axios.post("http://localhost:8000/audit/login", {
+          name: companyName,
+          password: password,
+          role: role,
+        });
+        console.log("Response: ", res.data);
+        if (res) {
+          navigate("/adash");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    
   }
   async function handleSignup() {
     console.log(companyName, password, confirmPassword, sector);
