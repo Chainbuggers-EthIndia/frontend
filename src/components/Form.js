@@ -47,7 +47,7 @@ export default function Form(props) {
         backgroundColor: "#E5E5E5",
     };
     const handleCloseForm =()=>{
-        props.setUplaodForm(false)
+        props.setUploadForm(false)
     }
     const [uploadedFileName, setUploadedFileName] = useState(null);
     const [uploadedFilePath, setUploadedFilePath] = useState(null);
