@@ -17,36 +17,13 @@ function UserSignup() {
   
   async function handleLogin() {
     console.log(companyName, password, role);
-    if(role === "Company"){
-      try {
-        const res = await axios.post("http://localhost:8000/company/login", {
-          name: companyName,
-          password: password,
-          role: role,
-        });
-        console.log("Response: ", res.data);
-        // if (res && role === "Auditor") {
-        //   navigate("/adash");
-        // }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    if (role === "Auditor" || role === "Estimator") {
-      try {
-        const res = await axios.post("http://localhost:8000/audit/login", {
-          name: companyName,
-          password: password,
-          role: role,
-        });
-        console.log("Response: ", res.data);
-        if (res) {
-          navigate("/adash");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    const res = await axios.post("http://localhost:8000/audit/login", {
+      companyId: companyId,
+      password: password,
+      role: role,
+    });
+    console.log("Response: ", res.data)
+    if (res && role === "Auditor") { navigate('/adash'); }
 
     
   }
@@ -69,30 +46,25 @@ function UserSignup() {
         }
       }
       if (role === "Auditor" || role === "Estimator") {
-        try {
-          const res = axios.post("http://localhost:8000/audit/register", {
-            name: companyName,
-            password: password,
-            sector: sector,
-            role: role,
-          });
-          console.log("Response: ", res);
-        } catch (error) {
-          console.log(error);
-        }
+        const res = axios.post("http://localhost:8000/audit/register", {
+          name: companyName,
+          password: password,
+          sector: sector,
+          role: role
+        });
+        console.log("Response: ", res)
       }
     }
   }
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center h-[100vh] bg-[url('./assets/img/user-bg.svg')] bg-no-repeat bg-cover">
       <img src={signupImg} className="ml-[-40vw] absolute" />
       <div className="bg-[#223A3C] px-[10vw] py-[2vh] flex flex-col gap-4 rounded-xl w-[30vw] ml-[15vw] items-center border-2 border-[#ffffff] h-[90vh]">
         <img src={logo} className="w-[10vw]" />
         <div className="flex gap-8 items-center justify-between bg-offwhite1 p-4 rounded-lg w-[100%] ml-[10vw]">
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${
-              login ? "bg-[#622A0F]" : null
-            } py-2 px-10 rounded-lg w-1/2 text-center`}
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F]" : null
+              } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
               setCompanyName("");
@@ -102,9 +74,8 @@ function UserSignup() {
             Log in
           </div>
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${
-              login ? null : "bg-[#622A0F]"
-            } py-2 px-10 rounded-lg w-1/2 text-center`}
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? null : "bg-[#622A0F]"
+              } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
               setCompanyName("");
