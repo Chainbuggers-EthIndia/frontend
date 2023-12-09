@@ -123,29 +123,25 @@ export default function Form(props) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+
+    <div className="flex items-center justify-center bg-[#ffffff] z-[99] absolute top-[20%] left-[30%]">
       <div
-        style={{
-          backgroundColor: "white",
-        }}
-        className="w-96 bg-white p-8 rounded shadow-md z-2 relative"
+        className="w-96 bg-white p-8 rounded shadow-md"
       >
         <button
           style={closeButtonStyle}
-          className="relative top-[-1rem] left-[19rem]  w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-400"
+          className="relative left-[24vw] bottom-[2vh] w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-400 cursor-pointer"
           onClick={handleCloseForm}
         >
           <span className="text-xs font-bold">X</span>
         </button>
 
         {isFileUploaded ? (
-          // Render UI for uploaded file using the new UploadedFile component
           <UploadedFile
             fileName={uploadedFileName}
             onDelete={handleDeleteFile}
           />
         ) : (
-          // Render UI for file upload
           <div
             className="mb-4 border-dashed border-2 border-gray-300 p-4 rounded-md flex flex-col items-center"
             onDragOver={handleDragOver}
@@ -198,14 +194,14 @@ export default function Form(props) {
           <input
             type="text"
             id="textInput"
-            className="mt-1 p-2 w-full border rounded-md"
+            className="mt-1 p-2 w-[95%] border rounded-md"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 cursor-pointer"
         >
           Submit
         </button>
