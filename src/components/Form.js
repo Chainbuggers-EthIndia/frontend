@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Lexeco1ABI from "../Lexeco1ABI.json";
+import Web3 from "web3";
+
 
 // New component to display uploaded file
 const UploadedFile = ({ fileName, onDelete }) => (
@@ -76,6 +79,16 @@ export default function Form(props) {
       console.error("Error uploading file:", error);
     }
   };
+
+  const Web3 = require("web3");
+
+  const Lexeco1ABI = require("../Lexeco1ABI.json");
+
+  const web3 = new Web3("https://api-sepolia.scrollscan.com/api");
+
+  const contractAddress = "0x79BA10AD79a7b663B6C6661a9aA4b104DaBA77dF";
+
+  const ipfsStore = new web3.eth.Contract(Lexeco1ABI, contractAddress);
 
   const handleDeleteFile = () => {
 
@@ -189,7 +202,7 @@ export default function Form(props) {
             htmlFor="textInput"
             className="block text-sm font-medium text-gray-700"
           >
-            Input Field
+            Audit Value
           </label>
           <input
             type="text"
@@ -202,7 +215,7 @@ export default function Form(props) {
         {/* Submit Button */}  {/* //TRIGGER Lexeco1 Carbon Credit */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 cursor-pointer"
+          className="w-full bg-blue-500 text-black p-2 rounded-md hover:bg-blue-600 cursor-pointer"
         >
           Submit
         </button>

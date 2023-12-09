@@ -1,0 +1,76 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "companyAddress",
+				"type": "address"
+			}
+		],
+		"name": "initializeCompany",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "companyAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "auditValue",
+				"type": "uint256"
+			}
+		],
+		"name": "updateCredits",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "companyAddress",
+				"type": "address"
+			}
+		],
+		"name": "canTransact",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "companies",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "credits",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastUpdate",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

@@ -12,13 +12,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AuditorPage() {
   const [uploadForm, setUploadForm] = useState(false);
-
   const generateCompanyCards = (count) => {
     return Array.from({ length: count }, (_, index) => (
       <AuditCard key={index} setUploadForm={setUploadForm} />
     ));
   };
-
 
   const HandleButtonClick = () => {
     const navigate = useNavigate();
