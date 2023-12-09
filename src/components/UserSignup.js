@@ -1,61 +1,70 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import signupImg from "../assets/img/signup-img.png";
 import logo from "../assets/img/main-logo.svg";
 
 function UserSignup() {
-    const navigate = useNavigate();
-    const [login, setLogin] = React.useState(true);
+  const navigate = useNavigate();
+  const [login, setLogin] = React.useState(true);
   const [companyId, setCompanyId] = React.useState("");
   const [companyName, setCompanyName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [sector, setSector] = React.useState("");
   const [role, setRole] = React.useState("Company");
+
+  
   async function handleLogin() {
     console.log(companyName, password, role);
-    const res = await axios.post("https://lexeco.onrender.com/audit/login", {
-        companyId: companyId,
-          password: password,
-          role: role,
-        });
-        console.log("Response: ", res.data)
-        if(res && role === "Auditor"){navigate('/adash');}
+    const res = await axios.post("http://localhost:8000/audit/login", {
+      companyId: companyId,
+      password: password,
+      role: role,
+    });
+    console.log("Response: ", res.data)
+    if (res && role === "Auditor") { navigate('/adash'); }
 
+    
   }
   async function handleSignup() {
     console.log(companyName, password, confirmPassword, sector);
     if (password === confirmPassword) {
       if (role === "Company") {
-        const res = await axios.post("https://lexeco.onrender.com/company/register", {
-          name: companyName,
-          password: password,
-          sector: sector,
-        });
-        console.log("Response: ", res)
+        try {
+          const res = await axios.post(
+            "http://localhost:8000/company/register",
+            {
+              name: companyName,
+              password: password,
+              sector: sector,
+            }
+          );
+          console.log("Response: ", res);
+        } catch (error) {
+          console.log(error);
+        }
       }
       if (role === "Auditor" || role === "Estimator") {
         const res = await axios.post("https://lexeco.onrender.com/audit/register", {
           name: companyName,
           password: password,
           sector: sector,
-          role:role
+          role: role
         });
         console.log("Response: ", res)
       }
     }
   }
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center h-[100vh] bg-[url('./assets/img/user-bg.svg')] bg-no-repeat bg-cover">
       <img src={signupImg} className="ml-[-40vw] absolute" />
       <div className="bg-[#223A3C] px-[10vw] py-[2vh] flex flex-col gap-4 rounded-xl w-[30vw] ml-[15vw] items-center border-2 border-[#ffffff] h-[90vh]">
         <img src={logo} className="w-[10vw]" />
         <div className="flex gap-8 items-center justify-between bg-offwhite1 p-4 rounded-lg w-[100%] ml-[10vw]">
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${
-              login ? "bg-[#622A0F]" : null
-            } py-2 px-10 rounded-lg w-1/2 text-center`}
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? "bg-[#622A0F]" : null
+              } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
               setCompanyName("");
@@ -65,9 +74,8 @@ function UserSignup() {
             Log in
           </div>
           <div
-            className={`text-white text-[1vw] font-bold cursor-pointer ${
-              login ? null : "bg-[#622A0F]"
-            } py-2 px-10 rounded-lg w-1/2 text-center`}
+            className={`text-white text-[1vw] font-bold cursor-pointer ${login ? null : "bg-[#622A0F]"
+              } py-2 px-10 rounded-lg w-1/2 text-center`}
             onClick={() => {
               setLogin(!login);
               setCompanyName("");
@@ -82,28 +90,32 @@ function UserSignup() {
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
-            {login && <div className="flex flex-col gap-1">
-              <label className="text-[#ffffff] text-[1vw] font-bold ">
-                Company Id
-              </label>
-              <input
-                type="text"
-                placeholder="Company Id"
-                className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </div>}
-            {!login && <div className="flex flex-col gap-1">
-              <label className="text-[#ffffff] text-[1vw] font-bold ">
-                Company Name
-              </label>
-              <input
-                type="text"
-                placeholder="Company Name"
-                className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
-                onChange={(e) => setCompanyName(e.target.value)}
-              />
-            </div>}
+            {login && (
+              <div className="flex flex-col gap-1">
+                <label className="text-[#ffffff] text-[1vw] font-bold ">
+                  Company Id
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company Id"
+                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  onChange={(e) => setCompanyId(e.target.value)}
+                />
+              </div>
+            )}
+            {!login && (
+              <div className="flex flex-col gap-1">
+                <label className="text-[#ffffff] text-[1vw] font-bold ">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  className="text-white text-[1vw] font-bold  outline-none rounded-lg p-2 w-full"
+                  onChange={(e) => setCompanyName(e.target.value)}
+                />
+              </div>
+            )}
             {!login && (
               <div className="flex flex-col gap-1">
                 <label className="text-[#ffffff] text-[1vw] font-bold ">
