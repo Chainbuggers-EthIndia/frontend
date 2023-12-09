@@ -59,10 +59,13 @@ function UserSignup() {
           role: role,
         });
         console.log("Response: ", res.data);
-        if (res ) {
+        if (res && role==="Auditor") {
           navigate("/adash");
         }
         await connectMetamask();
+        if (res && role==="Estimator") {
+          navigate("/edash");
+        }
       } catch (error) {
         console.log(error);
       }

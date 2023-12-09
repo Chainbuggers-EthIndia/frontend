@@ -25,7 +25,6 @@ export default function LandingPage() {
                             <div className='text-7xl text-extrabold text-white mb-2 font-helvetica underline-offset-2'>LEXECO</div>
                             <div className='text-3xl text-semibold font-helvetica text-offwhite1'>Rewarding Sustainabity.</div>
                         </div>
-                        {/* <div className="border-l-4 border-gray h-40">n</div> */}
                         <div className='w-2/3 h-2/3 mt-8 flex flex-col items-center justify-between'>
                             <div className='text-xl font-bold font-helvetica w-1/2 text-offwhite1'>
                                 Turn emissions into income: The carbon credit marketplace that rewards sustainability.
