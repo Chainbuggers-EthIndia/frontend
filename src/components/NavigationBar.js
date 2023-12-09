@@ -11,6 +11,7 @@ const NavigationBar = () => {
                 <div className="font-comic-sans mx-4">What we do</div>
                 <div className="font-comic-sans mx-4">Innovation</div>
                 <div className="font-comic-sans mx-4">About Us</div>
+                <div className="font-comic-sans mx-4">Login/Register</div>
             </div>
         </div>
     );

@@ -62,7 +62,7 @@ export default function Form(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/audit/upload",
+        "http://192.168.148.85:8000/audit/upload",
         formData
       );
 
@@ -107,7 +107,7 @@ export default function Form(props) {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://localhost:8000/audit/upload",
+        "http://192.168.148.85:8000/audit/upload",
         formData
       );
 
@@ -128,7 +128,7 @@ export default function Form(props) {
         style={{
           backgroundColor: "white",
         }}
-        className="w-96 bg-white p-8 rounded shadow-md"
+        className="w-96 bg-white p-8 rounded shadow-md z-2 relative"
       >
         <button
           style={closeButtonStyle}
