@@ -7,7 +7,7 @@ const RejectCard = () => {
     };
 
     return (
-        <div className="h-[250px] w-52 mx-6 m-2 rounded-lg bg-offwhite1 z-2 relative">
+        <div className="h-[250px] w-52 mx-6 m-2 rounded-lg bg-darkgreen z-2 relative">
             <div className="h-[135px] rounded-t-lg top-0 flex flex-col text-white font-bold text-xl">
                 <img src={companyBack} className="h-full w-full object-fill inset-0 z-0" alt="Company Background" />
             </div>
@@ -16,7 +16,7 @@ const RejectCard = () => {
             <div className="text-helvetica font-semibold text-sm px-2 text-white">Sector</div>
             <button
                 onClick={handleClick}
-                className="w-full mt-2 bg-red-500 text-base font-bold text-white p-1 rounded-b-lg"
+                className="w-full mt-2 bg-red text-base font-bold text-white p-1 rounded-b-lg"
             >
                 Rejected
             </button>

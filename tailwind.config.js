@@ -13,7 +13,9 @@ module.exports = {
       burdundy: 'rgb(82,27,32)',
       gray: "rgba(255, 255, 255, 0.19)",
       lightgray: "#d6d0c4",
-      white: '#FFFFFF'
+      white: '#FFFFFF',
+      lightgreen : '#50C878',
+      red : '#C70039'
     }
 
   },

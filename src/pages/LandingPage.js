@@ -28,9 +28,7 @@ export default function LandingPage() {
                         {/* <div className="border-l-4 border-gray h-40">n</div> */}
                         <div className='w-2/3 h-2/3 mt-8 flex flex-col items-center justify-between'>
                             <div className='text-xl font-bold font-helvetica w-1/2 text-offwhite1'>
-                                Turn emissions into income:
-                                The carbon credit marketplace
-                                that rewards sustainability.
+                                Turn emissions into income: The carbon credit marketplace that rewards sustainability.
                             </div>
                             <div className='h-1/2 w-1/2 p-8'>
                                 <img src={findmore} />
