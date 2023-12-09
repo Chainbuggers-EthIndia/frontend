@@ -15,7 +15,7 @@ function UserSignup() {
   const [role, setRole] = React.useState("Company");
   async function handleLogin() {
     console.log(companyName, password, role);
-    const res = await axios.post("http://localhost:8000/audit/login", {
+    const res = await axios.post("https://lexeco.onrender.com/audit/login", {
         companyId: companyId,
           password: password,
           role: role,
@@ -28,7 +28,7 @@ function UserSignup() {
     console.log(companyName, password, confirmPassword, sector);
     if (password === confirmPassword) {
       if (role === "Company") {
-        const res = await axios.post("http://localhost:8000/company/register", {
+        const res = await axios.post("https://lexeco.onrender.com/company/register", {
           name: companyName,
           password: password,
           sector: sector,
@@ -36,7 +36,7 @@ function UserSignup() {
         console.log("Response: ", res)
       }
       if (role === "Auditor" || role === "Estimator") {
-        const res = axios.post("http://localhost:8000/audit/register", {
+        const res = await axios.post("https://lexeco.onrender.com/audit/register", {
           name: companyName,
           password: password,
           sector: sector,
