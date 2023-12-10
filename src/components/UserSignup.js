@@ -53,9 +53,9 @@ function UserSignup() {
           role: role,
         });
         console.log("Response: ", res.data);
-        // if (res) {
-        //   navigate("/adash");
-        // }
+        if (res) {
+          navigate("/Udash");
+        }
       } catch (error) {
         console.log(error);
       }
