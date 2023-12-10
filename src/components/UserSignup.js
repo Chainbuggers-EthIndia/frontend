@@ -12,7 +12,8 @@ function UserSignup() {
   const [companyName, setCompanyName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  // const [walletAddress, setWalletAddress] = React.useState("");
+  const [walletAddress, setWalletAddress] = React.useState("");
+  // const [id, setId] = React.useState("");
 
 
   const connectMetamask = async () => {
@@ -22,7 +23,15 @@ function UserSignup() {
         // const web3 = new Web3(window.ethereum);
         // const accounts = await web3.eth.getAccounts();
         // setWalletAddress(accounts[0]);
+        const web3 = new Web3(window.ethereum);
+
+      // Get the accounts from Metamask
+      const accounts = await web3.eth.getAccounts();
+      // setWalletAddress(accounts[0])
+      // Log the wallet address
+      console.log("Connected to Metamask. Wallet Address:", accounts[0]);
         console.log("Connected to Metamask");
+        return accounts[0]
       } catch (error) {
         console.log(error);
       }
@@ -31,13 +40,13 @@ function UserSignup() {
     }
   };
 
-  const [id, setId] = React.useState("");
   const [role, setRole] = React.useState("Company");
 
   async function handleLogin() {
     console.log(companyName, password, role);
     if (role === "Company") {
       try {
+        await connectMetamask();
         const res = await axios.post("https://lexeco.onrender.com/company/login", {
           companyId: companyId,
           password: password,
@@ -47,7 +56,6 @@ function UserSignup() {
         // if (res) {
         //   navigate("/adash");
         // }
-        await connectMetamask();
       } catch (error) {
         console.log(error);
       }
@@ -76,12 +84,14 @@ function UserSignup() {
     if (password === confirmPassword) {
       if (role === "Company") {
         try {
+          const acc = await connectMetamask();
           const res = await axios.post(
             "https://lexeco.onrender.com/company/register",
             {
               name: companyName,
               password: password,
               // sector: sector,
+              wallet:acc
             }
           )
           console.log("Response: ", res.data);
@@ -91,17 +101,21 @@ function UserSignup() {
             // Convert the entire response data object to a string for debugging
             alert("Response data: " + JSON.stringify(res.data));
           }
-        await connectMetamask();
         } catch (error) {
           console.log(error);
         }
       }
       if (role === "Auditor" || role === "Estimator") {
-        const res = await axios.post("https://lexeco.onrender.com/audit/register", {
-          name: companyName,
-          password: password,
+        try {
+          const acc = await connectMetamask();
+
+          const res = await axios.post("https://lexeco.onrender.com/audit/register", {
+            name: companyName,
+            password: password,
           // sector: sector,
           role: role,
+          wallet:acc
+          
         });
         console.log("Response: ", res.data);
         // alert({"CompanyId":res.data._id})
@@ -111,6 +125,9 @@ function UserSignup() {
           // Convert the entire response data object to a string for debugging
           alert("Response data: " + JSON.stringify(res.data));
         }
+      } catch (error) {
+        console.log(error)
+      }
       }
     }
   }
